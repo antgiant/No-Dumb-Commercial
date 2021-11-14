@@ -13,12 +13,17 @@
         h2 {
             background-color: #8dacc2;
             color:White;
+            margin: 0;
         }
         h3 {
+            margin: 0;
+        }
+        h4 {
             padding-left: 1em;
         }
         p {
             padding-left: 2em;
+            margin: 0;
         }
         audio {
             padding-left: 2em;
@@ -29,9 +34,77 @@
             text-align:center;
             padding: .5em;
         }
+        .two-columns {
+            column-count: 2;
+            column-gap: 20px;
+            column-rule: 4px dotted rgb(79, 185, 227);
+        }
+        .single_column {
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+        .invisible_link {
+            color: inherit;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
+    <script> 
+        function add_to_playlist(item) {
+            var item_details = get_details(item);
+            var playlist = document.getElementById('playlist');
+            var playlist_item = document.createElement('li');
+            playlist_item.innerHTML = "<span class='"+item+"'>"+item_details.name+"</span>";
+            playlist.appendChild(playlist_item);
+        }
+        function get_details(item) {
+            var detail = {name:"", url:""};
+            switch (item) {
+                case 'official_spot': 
+                    detail.name = "Starting with Matt (The Original)";
+                    detail.url = "audio/Official Spot.mp3";
+                    break;
+                case 'secondary_spot': 
+                    detail.name = "Starting with Destin (The Redo)";
+                    detail.url = "audio/Official Spot (Second Version).mp3";
+                    break;
+                case 'generic_bumper': 
+                    detail.name = "Generic";
+                    detail.url = "audio/Bumpers/Generic.mp3";
+                    break;
+                case 'cattle_bumper': 
+                    detail.name = "Cattle Market Update";
+                    detail.url = "audio/Bumpers/Cattle Market Update.mp3";
+                    break;
+                case 'metal_bumper': 
+                    detail.name = "Angry Rage Metal Classic";
+                    detail.url = "audio/Bumpers/Angry Rage Metal Classic.mp3";
+                    break;
+                case 'traffic_bumper': 
+                    detail.name = "Local Traffic on the 10s";
+                    detail.url = "audio/Bumpers/Local Traffic on the 10s.mp3";
+                    break;
+                case 'traffic2_bumper': 
+                    detail.name = "Traffic Update - Matt Version";
+                    detail.url = "audio/Bumpers/Traffic Update.mp3";
+                    break;
+                case 'traffic3_bumper': 
+                    detail.name = "Traffic Update - Destin Version";
+                    detail.url = "audio/Bumpers/Traffic Update - Destin Version.mp3";
+                    break;
+                case 'crotch_bumper': 
+                    detail.name = "Crotch Shot";
+                    detail.url = "audio/Bumpers/Crotch Shot.mp3";
+                    break;
+                case 'described': 
+                    detail.name = "Podcast Described";
+                    detail.url = "audio/Fun/Podcast Described.mp3";
+                    break;
+            }
+            return detail;
+        }
+    </script> 
 <h1><a href="index.html" style="color: white;">No Dumb Commercial</a></h1>
 <section><p style="padding-left: 0em;">
     A <a href="https://www.nodumbquestions.fm/">No Dumb Questions</a> commercial creator using the Commercial material provided in <a href="https://www.nodumbquestions.fm/listen/2021/10/21/119-whats-on-the-radio">Episode 119</a>. 
@@ -41,9 +114,38 @@
 </p>
 </section>
 <section>
-    <p>
-        Magic happens here
-    </p>
+    <div class="two-columns">
+        <div class="single_column">
+            <h2>Playlist</h2>
+            <ul id="playlist">
+            </ul>
+        </div>
+        <div class="single_column">
+            <h2>Source Material</h2>
+            <p>
+                <br />
+            </p>
+            <h3>Official Spots</h3>
+            <p>
+                <a href="javascript:add_to_playlist('official_spot')">Starting with Matt (The Original)</a><br />
+                <a href="javascript:add_to_playlist('secondary_spot')">Starting with Destin (The Redo)</a>
+            </p>
+            <h3>Bumpers</h3>
+            <p>
+                <a href="javascript:add_to_playlist('generic_bumper')">Generic</a><br />
+                <a href="javascript:add_to_playlist('cattle_bumper')">Cattle Market Update</a><br />
+                <a href="javascript:add_to_playlist('metal_bumper')">Angry Rage Metal Classic</a><br />
+                <a href="javascript:add_to_playlist('traffic_bumper')">Local Traffic on the 10s</a><br />
+                <a href="javascript:add_to_playlist('traffic2_bumper')">Traffic Update - Matt Version</a><br />
+                <a href="javascript:add_to_playlist('traffic3_bumper')">Traffic Update - Destin Version</a><br />
+                <a href="javascript:add_to_playlist('crotch_bumper')">Crotch Shot</a>
+            </p>
+            <h3>Bonus</h3>
+            <p>
+                <a href="javascript:add_to_playlist('described')">Podcast Described</a>
+            </p>
+        </div>
+    </div>
 </section>
 <section><br /><br /><br /></section>
 <footer>
