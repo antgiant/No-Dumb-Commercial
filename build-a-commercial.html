@@ -407,9 +407,11 @@
             //Setup playlist if coming in via Share Link
             const urlParams = new URLSearchParams(window.location.search);
             const tracks = urlParams.get('tracks');
-            const track_array = tracks.split(',');
-            for (j = 0; j < track_array.length; j++) {
-                add_to_playlist(track_array[j]);
+            if (tracks !== null) {
+                const track_array = tracks.split(',');
+                for (j = 0; j < track_array.length; j++) {
+                    add_to_playlist(track_array[j]);
+                }
             }
 
         </script> 
