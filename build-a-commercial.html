@@ -132,7 +132,6 @@
             var playlist = document.getElementById('playlist');
             var player = document.getElementById('player');
             player.addEventListener('ended', get_next_track, false);
-            let crunker = new Crunker();
 
             function add_to_playlist(item) {
                 var item_details = get_details(item);
@@ -238,16 +237,16 @@
                 for (i = 0; i < playlist.children.length; i++) {
                     paths.push(get_details(playlist.children[i].firstElementChild.classList[0]).url);
                 }
+                doTheCrunkerWork("concatAudio", "NoDumbCommercial.mp3", paths);
+            }
 
-                crunker
-                    .fetchAudio.apply(this, paths)
-                    .then(buffers => crunker.concatAudio(buffers))
-                    .then(concatted => crunker.export(concatted, "audio/mp3"))
-                    .then(output => crunker.download(output.blob))
-                    .catch(error => {
-                        document.getElementById("playlist_download").parentElement.innerHTML = "<br /><span id='playlist_download'>Your Browser doesn't support downloading. Sorry.</span>";
-                        throw new Error(error);
-                    });
+            async function doTheCrunkerWork(task, filename, audioPaths) {
+                const sampleRate = 44100;
+                const crunker	= new Crunker.default({ sampleRate })
+                const buffers	= await crunker.fetchAudio(...audioPaths);
+                const merged	= await crunker[task](buffers);
+                const output	= await crunker.export(merged, "audio/mp3");
+                await crunker.download(output.blob, filename);
             }
 
             playlist.addEventListener('slip:afterswipe', function(e){
