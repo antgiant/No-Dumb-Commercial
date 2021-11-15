@@ -71,6 +71,13 @@
             .visible_only_when_playlist_has_items {
                 display: none;
             }
+            .button {
+                background: gray;
+                border-radius: 15px;
+                padding: 0.5em;
+                color: white;
+                text-decoration: none;
+            }
         </style>
     </head>
     <body>
@@ -94,14 +101,22 @@
                     <h2>Playlist</h2>
                     <ul id="playlist">
                     </ul>
-                    <a href="javascript:reset_playlist()" class="visible_only_when_playlist_has_items" id="playlist_reset">Reset Playlist</a>
+                    <a href="javascript:reset_playlist()" class="visible_only_when_playlist_has_items button" id="playlist_reset">Reset Playlist</a>
+                    <p>
+                        <br />
+                        <br />
+                    </p>
+                    <h3 class="visible_only_when_playlist_has_items">Preview</h3>
                     <p>
                         <br />
                     </p>
                     <audio controls autoplay id="player" class="visible_only_when_playlist_has_items"></audio>
                     <p>
                         <br />
-                        <a href="javascript:download_commercial()" class="visible_only_when_playlist_has_items" id="playlist_download">Download Commercial</a>
+                    </p>
+                    <h3 class="visible_only_when_playlist_has_items">Download Commercial</h3>
+                    <p><br />
+                        <a href="javascript:download_commercial()" class="visible_only_when_playlist_has_items button" id="playlist_download">Download Now</a>
                     </p>
                 </div>
                 <div class="single_column">
