@@ -108,9 +108,32 @@
                         <a href="javascript:add_to_playlist('traffic3_bumper')">Traffic Update - Destin Version</a><br />
                         <a href="javascript:add_to_playlist('crotch_bumper')">Crotch Shot</a>
                     </p>
-                    <h3>Bonus</h3>
+                    <h3>Station IDs</h3>
                     <p>
+                        <a href="javascript:add_to_playlist('KHAS')">KHAS</a><br />
+                        <a href="javascript:add_to_playlist('KHOL')">KHOL</a><br />
+                        <a href="javascript:add_to_playlist('KIMN')">KIMN</a><br />
+                        <a href="javascript:add_to_playlist('KISS')">KISS FM</a><br />
+                        <a href="javascript:add_to_playlist('KOA')">KOA</a><br />
+                        <a href="javascript:add_to_playlist('WGN')">WGN</a><br />
+                        <a href="javascript:add_to_playlist('WKRP')">WKRP</a><br />
+                        <a href="javascript:add_to_playlist('WQAH')">WQAH</a>
+                    </p>
+                    <h3>Other</h3>
+                    <p>
+                        <a href="javascript:add_to_playlist('listening')">You're Listening To...</a><br />
+                        <a href="javascript:add_to_playlist('meaningless')">Meaningless Adult Rock</a><br />
                         <a href="javascript:add_to_playlist('described')">Podcast Described</a>
+                    </p>
+                    <h3>Alphabet</h3>
+                    <p>
+                        <a href="javascript:add_to_playlist('A')">A</a><br />
+                        <a href="javascript:add_to_playlist('B')">B</a><br />
+                        <a href="javascript:add_to_playlist('C')">C</a><br />
+                        <a href="javascript:add_to_playlist('D')">D</a><br />
+                        <a href="javascript:add_to_playlist('K')">K</a><br />
+                        <a href="javascript:add_to_playlist('W_matt')">W (by Matt)</a><br />
+                        <a href="javascript:add_to_playlist('W_destin')">W (by Destin)</a>
                     </p>
                 </div>
             </div>
@@ -183,6 +206,74 @@
                     case 'described': 
                         detail.name = "Podcast Described";
                         detail.url = "audio/Fun/Podcast Described.mp3";
+                        break;
+                    case 'KHAS':
+                        detail.name = "KHAS";
+                        detail.url = "audio/Station_IDs/KHAS.mp3";
+                        break;
+                    case 'KHOL': 
+                        detail.name = "KHOL";
+                        detail.url = "audio/Station_IDs/KHOL.mp3";
+                        break;
+                    case 'KIMN': 
+                        detail.name = "KIMN";
+                        detail.url = "audio/Station_IDs/KIMN.mp3";
+                        break;
+                    case 'KISS': 
+                        detail.name = "KISS FM";
+                        detail.url = "audio/Station_IDs/KISS FM.mp3";
+                        break;
+                    case 'KOA': 
+                        detail.name = "KOA";
+                        detail.url = "audio/Station_IDs/KOA.mp3";
+                        break;
+                    case 'WGN': 
+                        detail.name = "WGN";
+                        detail.url = "audio/Station_IDs/WGN.mp3";
+                        break;
+                    case 'WKRP': 
+                        detail.name = "WKRP";
+                        detail.url = "audio/Station_IDs/WKRP.mp3";
+                        break;
+                    case 'WQAH': 
+                        detail.name = "WQAH";
+                        detail.url = "audio/Station_IDs/WQAH.mp3";
+                        break;
+                    case 'listening': 
+                        detail.name = "You're Listening To...";
+                        detail.url = "audio/Station_IDs/You're Listening To....mp3";
+                        break;
+                    case 'meaningless': 
+                        detail.name = "Meaningless Adult Rock";
+                        detail.url = "audio/Fun/Meaningless Adult Rock.mp3";
+                        break;
+                    case 'A': 
+                        detail.name = "A";
+                        detail.url = "audio/Alphabet/A.mp3";
+                        break;
+                    case 'B': 
+                        detail.name = "B";
+                        detail.url = "audio/Alphabet/B.mp3";
+                        break;
+                    case 'C': 
+                        detail.name = "C";
+                        detail.url = "audio/Alphabet/C.mp3";
+                        break;
+                    case 'D': 
+                        detail.name = "D";
+                        detail.url = "audio/Alphabet/D.mp3";
+                        break;
+                    case 'K': 
+                        detail.name = "K";
+                        detail.url = "audio/Alphabet/K (Matt).mp3";
+                        break;
+                    case 'W_matt': 
+                        detail.name = "W (by Matt)";
+                        detail.url = "audio/Alphabet/W (Matt).mp3";
+                        break;
+                    case 'W_destin': 
+                        detail.name = "W (by Destin)";
+                        detail.url = "audio/Alphabet/W.mp3";
                         break;
                 }
                 return detail;
