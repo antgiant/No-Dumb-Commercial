@@ -46,9 +46,31 @@
             .currently_playing {
                 font-weight: bold;
             }
+            li {
+                user-select: none;
+                position: relative;
+                display:block;
+                border: 1px solid black;
+                background: white;
+                margin: 0; padding: 0 1em;
+                border-radius: 3px;
+                margin-bottom: -1px;
+                max-width: 100%;
+                line-height: 3;
+            }
+            .slip-reordering {
+                box-shadow: 0 2px 10px rgba(0,0,0,0.45);
+            }
+            .slip-swiping-container {
+                overflow-x: hidden;
+            }
+            .drag_icon {
+                float: right;
+            }
         </style>
     </head>
     <body>
+        <script src="js/slip.js"></script>
         <h1><a href="index.html" style="color: white;">No Dumb Commercial</a></h1>
         <section><p style="padding-left: 0em;">
             A <a href="https://www.nodumbquestions.fm/">No Dumb Questions</a> commercial creator using the Commercial material provided in <a href="https://www.nodumbquestions.fm/listen/2021/10/21/119-whats-on-the-radio">Episode 119</a>. 
@@ -109,7 +131,7 @@
             function add_to_playlist(item) {
                 var item_details = get_details(item);
                 var playlist_item = document.createElement('li');
-                playlist_item.innerHTML = "<span class='"+item+"'>"+item_details.name+"</span>";
+                playlist_item.innerHTML = "<span class='"+item+"'>"+item_details.name+"</span><span class='drag_icon instant'>≡</span>";
                 playlist.appendChild(playlist_item);
                 set_playlist();
             }
@@ -202,6 +224,25 @@
                 player.src = "";
                 document.getElementById("playlist_reset").style = "display: none;";
             }
+
+            playlist.addEventListener('slip:afterswipe', function(e){
+                // list will collapse over that element
+                e.target.parentNode.removeChild(e.target);
+                set_playlist();
+            }, false);
+
+            playlist.addEventListener('slip:reorder', function(e){
+                e.target.parentNode.insertBefore(e.target, e.detail.insertBefore);
+                set_playlist();
+                return false;
+            }, false);
+
+            playlist.addEventListener('slip:beforewait', function(e){
+                if (e.target.className.indexOf('instant') > -1) e.preventDefault();
+            }, false);
+
+            new Slip(playlist);
+
         </script> 
     </body>
 </html>
