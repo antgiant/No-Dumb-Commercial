@@ -71,6 +71,7 @@
     </head>
     <body>
         <script src="js/slip.js"></script>
+        <script src="js/crunker.js"></script>
         <h1><a href="index.html" style="color: white;">No Dumb Commercial</a></h1>
         <section><p style="padding-left: 0em;">
             A <a href="https://www.nodumbquestions.fm/">No Dumb Questions</a> commercial creator using the Commercial material provided in <a href="https://www.nodumbquestions.fm/listen/2021/10/21/119-whats-on-the-radio">Episode 119</a>. 
@@ -114,6 +115,10 @@
                 </div>
             </div>
             <audio controls autoplay id="player"></audio>
+            <p>
+                <br />
+                <a href="javascript:download_commercial()" style="display: none;" id="playlist_download">Download Commercial</a>
+            </p>
         </section>
         <section><br /><br /><br /></section>
         <footer>
@@ -127,6 +132,7 @@
             var playlist = document.getElementById('playlist');
             var player = document.getElementById('player');
             player.addEventListener('ended', get_next_track, false);
+            let crunker = new Crunker();
 
             function add_to_playlist(item) {
                 var item_details = get_details(item);
@@ -195,6 +201,7 @@
                     player.pause();
                 }
                 document.getElementById("playlist_reset").style = "display: inline;";
+                document.getElementById("playlist_download").style = "display: inline;";
             }
 
             function get_next_track() {
@@ -223,6 +230,24 @@
                 }
                 player.src = "";
                 document.getElementById("playlist_reset").style = "display: none;";
+                document.getElementById("playlist_download").style = "display: none;";
+            }
+
+            function download_commercial() {
+                let paths = [];
+                for (i = 0; i < playlist.children.length; i++) {
+                    paths.push(get_details(playlist.children[i].firstElementChild.classList[0]).url);
+                }
+
+                crunker
+                    .fetchAudio.apply(this, paths)
+                    .then(buffers => crunker.concatAudio(buffers))
+                    .then(concatted => crunker.export(concatted, "audio/mp3"))
+                    .then(output => crunker.download(output.blob))
+                    .catch(error => {
+                        document.getElementById("playlist_download").parentElement.innerHTML = "<br /><span id='playlist_download'>Your Browser doesn't support downloading. Sorry.</span>";
+                        throw new Error(error);
+                    });
             }
 
             playlist.addEventListener('slip:afterswipe', function(e){
