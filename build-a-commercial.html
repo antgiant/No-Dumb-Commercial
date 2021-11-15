@@ -9,6 +9,7 @@
                 color:White;
                 text-align:center;
                 padding: 1em;
+                margin: 0;
             }
             h2 {
                 background-color: #8dacc2;
@@ -73,6 +74,10 @@
         <script src="js/slip.js"></script>
         <script src="js/crunker.js"></script>
         <h1><a href="index.html" style="color: white;">No Dumb Commercial</a></h1>
+        <h2 style="text-align: center;">Custom Commercial Creator</h2>
+        <p>
+            <br />
+        </p>
         <section><p style="padding-left: 0em;">
             A <a href="https://www.nodumbquestions.fm/">No Dumb Questions</a> commercial creator using the Commercial material provided in <a href="https://www.nodumbquestions.fm/listen/2021/10/21/119-whats-on-the-radio">Episode 119</a>. 
             This site is intended to make it easy for you to create a radio commercial spot for the No Dumb Questions podcast as encouraged in <a href="https://www.nodumbquestions.fm/listen/2021/10/21/119-whats-on-the-radio">Episode 119</a>.<br />
@@ -137,7 +142,10 @@
                     </p>
                 </div>
             </div>
-            <audio controls autoplay id="player"></audio>
+            <p>
+                <br />
+            </p>
+            <audio controls autoplay id="player" style="display: none;"></audio>
             <p>
                 <br />
                 <a href="javascript:download_commercial()" style="display: none;" id="playlist_download">Download Commercial</a>
@@ -292,6 +300,7 @@
                 }
                 document.getElementById("playlist_reset").style = "display: inline;";
                 document.getElementById("playlist_download").style = "display: inline;";
+                document.getElementById("player").style = "display: inline;";
             }
 
             function get_next_track() {
@@ -321,6 +330,7 @@
                 player.src = "";
                 document.getElementById("playlist_reset").style = "display: none;";
                 document.getElementById("playlist_download").style = "display: none;";
+                document.getElementById("player").style = "display: none;";
             }
 
             function download_commercial() {
