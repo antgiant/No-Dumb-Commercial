@@ -1,159 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">    
-    <title>No Dumb Commercial</title>
-    <style>
-        h1 {
-            background-color:#2A7EBC;
-            color:White;
-            text-align:center;
-            padding: 1em;
-        }
-        h2 {
-            background-color: #8dacc2;
-            color:White;
-            margin: 0;
-        }
-        h3 {
-            margin: 0;
-        }
-        h4 {
-            padding-left: 1em;
-        }
-        p {
-            padding-left: 2em;
-            margin: 0;
-        }
-        audio {
-            padding-left: 2em;
-        }
-        footer {
-            background-color:#2A7EBC;
-            color:White;
-            text-align:center;
-            padding: .5em;
-        }
-        .two-columns {
-            column-count: 2;
-            column-gap: 20px;
-            column-rule: 4px dotted rgb(79, 185, 227);
-        }
-        .single_column {
-            break-inside: avoid;
-            page-break-inside: avoid;
-        }
-        .invisible_link {
-            color: inherit;
-            text-decoration: none;
-        }
-    </style>
-</head>
-<body>
-    <script> 
-        function add_to_playlist(item) {
-            var item_details = get_details(item);
-            var playlist = document.getElementById('playlist');
-            var playlist_item = document.createElement('li');
-            playlist_item.innerHTML = "<span class='"+item+"'>"+item_details.name+"</span>";
-            playlist.appendChild(playlist_item);
-        }
-        function get_details(item) {
-            var detail = {name:"", url:""};
-            switch (item) {
-                case 'official_spot': 
-                    detail.name = "Starting with Matt (The Original)";
-                    detail.url = "audio/Official Spot.mp3";
-                    break;
-                case 'secondary_spot': 
-                    detail.name = "Starting with Destin (The Redo)";
-                    detail.url = "audio/Official Spot (Second Version).mp3";
-                    break;
-                case 'generic_bumper': 
-                    detail.name = "Generic";
-                    detail.url = "audio/Bumpers/Generic.mp3";
-                    break;
-                case 'cattle_bumper': 
-                    detail.name = "Cattle Market Update";
-                    detail.url = "audio/Bumpers/Cattle Market Update.mp3";
-                    break;
-                case 'metal_bumper': 
-                    detail.name = "Angry Rage Metal Classic";
-                    detail.url = "audio/Bumpers/Angry Rage Metal Classic.mp3";
-                    break;
-                case 'traffic_bumper': 
-                    detail.name = "Local Traffic on the 10s";
-                    detail.url = "audio/Bumpers/Local Traffic on the 10s.mp3";
-                    break;
-                case 'traffic2_bumper': 
-                    detail.name = "Traffic Update - Matt Version";
-                    detail.url = "audio/Bumpers/Traffic Update.mp3";
-                    break;
-                case 'traffic3_bumper': 
-                    detail.name = "Traffic Update - Destin Version";
-                    detail.url = "audio/Bumpers/Traffic Update - Destin Version.mp3";
-                    break;
-                case 'crotch_bumper': 
-                    detail.name = "Crotch Shot";
-                    detail.url = "audio/Bumpers/Crotch Shot.mp3";
-                    break;
-                case 'described': 
-                    detail.name = "Podcast Described";
-                    detail.url = "audio/Fun/Podcast Described.mp3";
-                    break;
+    <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">    
+        <title>No Dumb Commercial</title>
+        <style>
+            h1 {
+                background-color:#2A7EBC;
+                color:White;
+                text-align:center;
+                padding: 1em;
             }
-            return detail;
-        }
-    </script> 
-<h1><a href="index.html" style="color: white;">No Dumb Commercial</a></h1>
-<section><p style="padding-left: 0em;">
-    A <a href="https://www.nodumbquestions.fm/">No Dumb Questions</a> commercial creator using the Commercial material provided in <a href="https://www.nodumbquestions.fm/listen/2021/10/21/119-whats-on-the-radio">Episode 119</a>. 
-    This site is intended to make it easy for you to create a radio commercial spot for the No Dumb Questions podcast as encouraged in <a href="https://www.nodumbquestions.fm/listen/2021/10/21/119-whats-on-the-radio">Episode 119</a>.<br />
-    <br />
-    <br />
-</p>
-</section>
-<section>
-    <div class="two-columns">
-        <div class="single_column">
-            <h2>Playlist</h2>
-            <ul id="playlist">
-            </ul>
-        </div>
-        <div class="single_column">
-            <h2>Source Material</h2>
-            <p>
+            h2 {
+                background-color: #8dacc2;
+                color:White;
+                margin: 0;
+            }
+            h3 {
+                margin: 0;
+            }
+            h4 {
+                padding-left: 1em;
+            }
+            p {
+                padding-left: 2em;
+                margin: 0;
+            }
+            audio {
+                padding-left: 2em;
+            }
+            footer {
+                background-color:#2A7EBC;
+                color:White;
+                text-align:center;
+                padding: .5em;
+            }
+            .two-columns {
+                column-count: 2;
+                column-gap: 20px;
+                column-rule: 4px dotted rgb(79, 185, 227);
+            }
+            .single_column {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+            .currently_playing {
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <h1><a href="index.html" style="color: white;">No Dumb Commercial</a></h1>
+        <section><p style="padding-left: 0em;">
+            A <a href="https://www.nodumbquestions.fm/">No Dumb Questions</a> commercial creator using the Commercial material provided in <a href="https://www.nodumbquestions.fm/listen/2021/10/21/119-whats-on-the-radio">Episode 119</a>. 
+            This site is intended to make it easy for you to create a radio commercial spot for the No Dumb Questions podcast as encouraged in <a href="https://www.nodumbquestions.fm/listen/2021/10/21/119-whats-on-the-radio">Episode 119</a>.<br />
+            <br />
+            <br />
+        </p>
+        </section>
+        <section>
+            <div class="two-columns">
+                <div class="single_column">
+                    <h2>Playlist</h2>
+                    <ul id="playlist">
+                    </ul>
+                    <a href="javascript:reset_playlist()" style="display: none;" id="playlist_reset">Reset Playlist</a>
+                </div>
+                <div class="single_column">
+                    <h2>Source Material</h2>
+                    <p>
+                        <br />
+                    </p>
+                    <h3>Official Spots</h3>
+                    <p>
+                        <a href="javascript:add_to_playlist('official_spot')">Starting with Matt (The Original)</a><br />
+                        <a href="javascript:add_to_playlist('secondary_spot')">Starting with Destin (The Redo)</a>
+                    </p>
+                    <h3>Bumpers</h3>
+                    <p>
+                        <a href="javascript:add_to_playlist('generic_bumper')">Generic</a><br />
+                        <a href="javascript:add_to_playlist('cattle_bumper')">Cattle Market Update</a><br />
+                        <a href="javascript:add_to_playlist('metal_bumper')">Angry Rage Metal Classic</a><br />
+                        <a href="javascript:add_to_playlist('traffic_bumper')">Local Traffic on the 10s</a><br />
+                        <a href="javascript:add_to_playlist('traffic2_bumper')">Traffic Update - Matt Version</a><br />
+                        <a href="javascript:add_to_playlist('traffic3_bumper')">Traffic Update - Destin Version</a><br />
+                        <a href="javascript:add_to_playlist('crotch_bumper')">Crotch Shot</a>
+                    </p>
+                    <h3>Bonus</h3>
+                    <p>
+                        <a href="javascript:add_to_playlist('described')">Podcast Described</a>
+                    </p>
+                </div>
+            </div>
+            <audio controls autoplay id="player"></audio>
+        </section>
+        <section><br /><br /><br /></section>
+        <footer>
+            <p style="padding-left: 0em;">
+                This site is cookie and tracking free. Source available <a href="https://github.com/antgiant/No-Dumb-Commercial">here</a>, but more importantly go subscribe to <a href="https://www.nodumbquestions.fm/">No Dumb Questions</a>.<br />
                 <br />
+                <a href="index.html">Home</a>
             </p>
-            <h3>Official Spots</h3>
-            <p>
-                <a href="javascript:add_to_playlist('official_spot')">Starting with Matt (The Original)</a><br />
-                <a href="javascript:add_to_playlist('secondary_spot')">Starting with Destin (The Redo)</a>
-            </p>
-            <h3>Bumpers</h3>
-            <p>
-                <a href="javascript:add_to_playlist('generic_bumper')">Generic</a><br />
-                <a href="javascript:add_to_playlist('cattle_bumper')">Cattle Market Update</a><br />
-                <a href="javascript:add_to_playlist('metal_bumper')">Angry Rage Metal Classic</a><br />
-                <a href="javascript:add_to_playlist('traffic_bumper')">Local Traffic on the 10s</a><br />
-                <a href="javascript:add_to_playlist('traffic2_bumper')">Traffic Update - Matt Version</a><br />
-                <a href="javascript:add_to_playlist('traffic3_bumper')">Traffic Update - Destin Version</a><br />
-                <a href="javascript:add_to_playlist('crotch_bumper')">Crotch Shot</a>
-            </p>
-            <h3>Bonus</h3>
-            <p>
-                <a href="javascript:add_to_playlist('described')">Podcast Described</a>
-            </p>
-        </div>
-    </div>
-</section>
-<section><br /><br /><br /></section>
-<footer>
-    <p style="padding-left: 0em;">
-        This site is cookie and tracking free. Source available <a href="https://github.com/antgiant/No-Dumb-Commercial">here</a>, but more importantly go subscribe to <a href="https://www.nodumbquestions.fm/">No Dumb Questions</a>.<br />
-        <br />
-        <a href="index.html">Home</a>
-    </p>
-</footer>
-</body>
+        </footer>
+        <script> 
+            var playlist = document.getElementById('playlist');
+            var player = document.getElementById('player');
+            player.addEventListener('ended', get_next_track, false);
+
+            function add_to_playlist(item) {
+                var item_details = get_details(item);
+                var playlist_item = document.createElement('li');
+                playlist_item.innerHTML = "<span class='"+item+"'>"+item_details.name+"</span>";
+                playlist.appendChild(playlist_item);
+                set_playlist();
+            }
+
+            function get_details(item) {
+                var detail = {name:"", url:""};
+                switch (item) {
+                    case 'official_spot': 
+                        detail.name = "Starting with Matt (The Original)";
+                        detail.url = "audio/Official Spot.mp3";
+                        break;
+                    case 'secondary_spot': 
+                        detail.name = "Starting with Destin (The Redo)";
+                        detail.url = "audio/Official Spot (Second Version).mp3";
+                        break;
+                    case 'generic_bumper': 
+                        detail.name = "Generic";
+                        detail.url = "audio/Bumpers/Generic.mp3";
+                        break;
+                    case 'cattle_bumper': 
+                        detail.name = "Cattle Market Update";
+                        detail.url = "audio/Bumpers/Cattle Market Update.mp3";
+                        break;
+                    case 'metal_bumper': 
+                        detail.name = "Angry Rage Metal Classic";
+                        detail.url = "audio/Bumpers/Angry Rage Metal Classic.mp3";
+                        break;
+                    case 'traffic_bumper': 
+                        detail.name = "Local Traffic on the 10s";
+                        detail.url = "audio/Bumpers/Local Traffic on the 10s.mp3";
+                        break;
+                    case 'traffic2_bumper': 
+                        detail.name = "Traffic Update - Matt Version";
+                        detail.url = "audio/Bumpers/Traffic Update.mp3";
+                        break;
+                    case 'traffic3_bumper': 
+                        detail.name = "Traffic Update - Destin Version";
+                        detail.url = "audio/Bumpers/Traffic Update - Destin Version.mp3";
+                        break;
+                    case 'crotch_bumper': 
+                        detail.name = "Crotch Shot";
+                        detail.url = "audio/Bumpers/Crotch Shot.mp3";
+                        break;
+                    case 'described': 
+                        detail.name = "Podcast Described";
+                        detail.url = "audio/Fun/Podcast Described.mp3";
+                        break;
+                }
+                return detail;
+            }
+
+            function set_playlist() {
+                player.pause();
+                var playing = document.getElementsByClassName("currently_playing");
+                for(i = 0; i < playing.length; i++) {
+                    playing[i].classList.remove('currently_playing');
+                }
+                if (playlist.children[0] !== undefined) {
+                    player.src = get_details(playlist.children[0].firstElementChild.classList[0]).url;
+                    playlist.children[0].classList.add("currently_playing");
+                    player.pause();
+                }
+                document.getElementById("playlist_reset").style = "display: inline;";
+            }
+
+            function get_next_track() {
+                var next = false;
+                for (i = 0; i < playlist.children.length; i++) {
+                    if (playlist.children[i].classList.contains("currently_playing")) {
+                        playlist.children[i].classList.remove('currently_playing');
+                        next = true;
+                    } else if (next) {
+                        playlist.children[i].classList.add("currently_playing");
+                        player.src = get_details(playlist.children[i].firstElementChild.classList[0]).url;
+                        return;
+                    }
+                }
+                //Getting here means we have reached the end of the playlist
+                if (playlist.children[0] !== undefined) {
+                    player.src = get_details(playlist.children[0].firstElementChild.classList[0]).url;
+                    playlist.children[0].classList.add("currently_playing");
+                    player.pause();
+                }
+            }
+
+            function reset_playlist() {
+                for (i = playlist.children.length - 1; i >= 0; i--) {
+                    playlist.children[i].remove();
+                }
+                player.src = "";
+                document.getElementById("playlist_reset").style = "display: none;";
+            }
+        </script> 
+    </body>
 </html>
