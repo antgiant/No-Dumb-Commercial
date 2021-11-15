@@ -241,7 +241,7 @@
             }
 
             async function doTheCrunkerWork(task, filename, audioPaths) {
-                const sampleRate = 44100;
+                const sampleRate = 48000;
                 const crunker	= new Crunker.default({ sampleRate })
                 const buffers	= await crunker.fetchAudio(...audioPaths);
                 const merged	= await crunker[task](buffers);
