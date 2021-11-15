@@ -237,17 +237,20 @@
                 for (i = 0; i < playlist.children.length; i++) {
                     paths.push(get_details(playlist.children[i].firstElementChild.classList[0]).url);
                 }
-            doTheCrunkerWork("concatAudio", "No Dumb Questions Commercial", paths);
+                doTheCrunkerWork("concatAudio", "No Dumb Questions Commercial", paths);
             }
 
             async function doTheCrunkerWork(task, filename, audioPaths) {
-                const sampleRate = 48000;
-                const crunker	= new Crunker.default({ sampleRate })
+                const crunker	= new Crunker.default()
                 const buffers	= await crunker.fetchAudio(...audioPaths);
                 const merged	= await crunker[task](buffers);
                 const output	= await crunker.export(merged, "audio/mp3");
                 await crunker.download(output.blob, filename);
             }
+            (new Crunker.default()).notSupported(() => {
+                document.getElementById("playlist_download").parentElement.innerHTML = "<br /><span id='playlist_download'>Your Browser doesn't support downloading. Sorry.</span>";
+            });
+
 
             playlist.addEventListener('slip:afterswipe', function(e){
                 // list will collapse over that element
