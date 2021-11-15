@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta name="viewport" content="width=device-width,initial-scale=1.0">    
-        <title>No Dumb Commercial</title>
+        <title>NDQ - Custom Commercial Creator</title>
         <style>
             h1 {
                 background-color:#2A7EBC;
@@ -91,7 +91,7 @@
         <section>
             <div class="two-columns">
                 <div class="single_column">
-                    <h2>Playlist<span class="float_right visible_only_when_playlist_has_items"><a href="">Share</a></span></h2>
+                    <h2>Playlist</h2>
                     <ul id="playlist">
                     </ul>
                     <a href="javascript:reset_playlist()" class="visible_only_when_playlist_has_items" id="playlist_reset">Reset Playlist</a>
@@ -292,23 +292,40 @@
 
             function set_playlist() {
                 player.pause();
-                var playing = document.getElementsByClassName("currently_playing");
-                for(i = 0; i < playing.length; i++) {
-                    playing[i].classList.remove('currently_playing');
-                }
-                if (playlist.children[0] !== undefined) {
-                    player.src = get_details(playlist.children[0].firstElementChild.classList[0]).url;
-                    playlist.children[0].classList.add("currently_playing");
-                    player.pause();
-                }
+
                 for(i= 0; i < document.styleSheets[0].cssRules.length; i++) {
                     if (document.styleSheets[0].cssRules[i].selectorText === ".visible_only_when_playlist_has_items") {
                         document.styleSheets[0].cssRules[i].style['display'] = 'inline';
                     }
                 }
-                if (playing.length === 0) {
+
+                var playing = document.getElementsByClassName("currently_playing");
+                for(i = 0; i < playing.length; i++) {
+                    playing[i].classList.remove('currently_playing');
+                }
+                
+                if (playlist.children[0] !== undefined) {
+                    player.src = get_details(playlist.children[0].firstElementChild.classList[0]).url;
+                    playlist.children[0].classList.add("currently_playing");
+                    player.pause();
+                } else {
                     reset_playlist();
                 }
+
+                //Set Share Link
+                var url="?";
+                for (i = 0; i < playlist.children.length; i++) {
+                    if (i === 0) {
+                        url = "?tracks="+playlist.children[i].firstElementChild.classList[0];
+                    } else {
+                        url += ","+playlist.children[i].firstElementChild.classList[0];
+                    }
+                }
+                if (window.history.replaceState) {
+                    //prevents browser from storing history with each change:
+                    window.history.replaceState(null, "", url);
+                }
+                
             }
 
             function get_next_track() {
@@ -332,15 +349,20 @@
             }
 
             function reset_playlist() {
+                for(i= 0; i < document.styleSheets[0].cssRules.length; i++) {
+                    if (document.styleSheets[0].cssRules[i].selectorText === ".visible_only_when_playlist_has_items") {
+                        document.styleSheets[0].cssRules[i].style['display'] = 'none';
+                    }
+                }
+
                 for (i = playlist.children.length - 1; i >= 0; i--) {
                     playlist.children[i].remove();
                 }
                 player.src = "";
 
-                for(i= 0; i < document.styleSheets[0].cssRules.length; i++) {
-                    if (document.styleSheets[0].cssRules[i].selectorText === ".visible_only_when_playlist_has_items") {
-                        document.styleSheets[0].cssRules[i].style['display'] = 'none';
-                    }
+                if (window.history.replaceState) {
+                    //prevents browser from storing history with each change:
+                    window.history.replaceState(null, "", "?");
                 }
             }
 
@@ -381,6 +403,14 @@
             }, false);
 
             new Slip(playlist);
+
+            //Setup playlist if coming in via Share Link
+            const urlParams = new URLSearchParams(window.location.search);
+            const tracks = urlParams.get('tracks');
+            const track_array = tracks.split(',');
+            for (j = 0; j < track_array.length; j++) {
+                add_to_playlist(track_array[j]);
+            }
 
         </script> 
     </body>
