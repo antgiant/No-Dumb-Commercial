@@ -95,6 +95,14 @@
                     <ul id="playlist">
                     </ul>
                     <a href="javascript:reset_playlist()" class="visible_only_when_playlist_has_items" id="playlist_reset">Reset Playlist</a>
+                    <p>
+                        <br />
+                    </p>
+                    <audio controls autoplay id="player" class="visible_only_when_playlist_has_items"></audio>
+                    <p>
+                        <br />
+                        <a href="javascript:download_commercial()" class="visible_only_when_playlist_has_items" id="playlist_download">Download Commercial</a>
+                    </p>
                 </div>
                 <div class="single_column">
                     <h2>Source Material</h2>
@@ -127,11 +135,33 @@
                         <a href="javascript:add_to_playlist('WKRP')">WKRP</a><br />
                         <a href="javascript:add_to_playlist('WQAH')">WQAH</a>
                     </p>
-                    <h3>Other</h3>
+                    <h3>Snippets</h3>
                     <p>
-                        <a href="javascript:add_to_playlist('listening')">You're Listening To...</a><br />
+                        <a href="javascript:add_to_playlist('described')">Podcast Described</a><br />
+                        <a href="javascript:add_to_playlist('cattle')">Cattle</a><br />
+                        <a href="javascript:add_to_playlist('brought')">Is brought to you by... (Destin)</a><br />
+                        <a href="javascript:add_to_playlist('brought2')">Is brought to you by... (Matt)</a><br />
+                        <a href="javascript:add_to_playlist('brought3')">Is brought to you by... Version 2 by Destin</a><br />
+                        <a href="javascript:add_to_playlist('brought4')">Was brought to you by... (Matt)</a><br />
+                        <a href="javascript:add_to_playlist('market')">Market</a><br />
+                        <a href="javascript:add_to_playlist('this')">This</a><br />
+                        <a href="javascript:add_to_playlist('traffic')">Traffic</a><br />
+                        <a href="javascript:add_to_playlist('update')">Update</a><br />
+                        <a href="javascript:add_to_playlist('sponsored')">Was sponsored by...</a><br />
+                        <a href="javascript:add_to_playlist('onto')">Now on to the</a><br />
+                        <a href="javascript:add_to_playlist('listening')">You're Listening To...</a>
+                    </p>
+                    <h3>Genres</h3>
+                    <p>
                         <a href="javascript:add_to_playlist('meaningless')">Meaningless Adult Rock</a><br />
-                        <a href="javascript:add_to_playlist('described')">Podcast Described</a>
+                        <a href="javascript:add_to_playlist('8090')">80s & 90s</a><br />
+                        <a href="javascript:add_to_playlist('80s')">80s</a><br />
+                        <a href="javascript:add_to_playlist('90s')">90s</a><br />
+                        <a href="javascript:add_to_playlist('adult')">Adult</a><br />
+                        <a href="javascript:add_to_playlist('classic')">Classic</a><br />
+                        <a href="javascript:add_to_playlist('metal')">Metal</a><br />
+                        <a href="javascript:add_to_playlist('rage')">Rage</a><br />
+                        <a href="javascript:add_to_playlist('rock')">Rock</a>
                     </p>
                     <h3>Alphabet</h3>
                     <p>
@@ -145,14 +175,6 @@
                     </p>
                 </div>
             </div>
-            <p>
-                <br />
-            </p>
-            <audio controls autoplay id="player" class="visible_only_when_playlist_has_items"></audio>
-            <p>
-                <br />
-                <a href="javascript:download_commercial()" class="visible_only_when_playlist_has_items" id="playlist_download">Download Commercial</a>
-            </p>
         </section>
         <section><br /><br /><br /></section>
         <footer>
@@ -250,10 +272,6 @@
                         detail.name = "WQAH";
                         detail.url = "audio/Station_IDs/WQAH.mp3";
                         break;
-                    case 'listening': 
-                        detail.name = "You're Listening To...";
-                        detail.url = "audio/Station_IDs/You're Listening To....mp3";
-                        break;
                     case 'meaningless': 
                         detail.name = "Meaningless Adult Rock";
                         detail.url = "audio/Fun/Meaningless Adult Rock.mp3";
@@ -285,6 +303,86 @@
                     case 'W_destin': 
                         detail.name = "W (by Destin)";
                         detail.url = "audio/Alphabet/W.mp3";
+                        break;
+                    case '8090': 
+                        detail.name = "80s & 90s";
+                        detail.url = "audio/Generes/80s & 90s.mp3";
+                        break;
+                    case '80s': 
+                        detail.name = "80s";
+                        detail.url = "audio/Generes/80s.mp3";
+                        break;
+                    case '90s': 
+                        detail.name = "90s";
+                        detail.url = "audio/Generes/90s.mp3";
+                        break;
+                    case 'adult': 
+                        detail.name = "Adult";
+                        detail.url = "audio/Generes/Adult.mp3";
+                        break;
+                    case 'classic': 
+                        detail.name = "Classic";
+                        detail.url = "audio/Generes/Classic.mp3";
+                        break;
+                    case 'metal': 
+                        detail.name = "Metal";
+                        detail.url = "audio/Generes/Metal.mp3";
+                        break;
+                    case 'rage': 
+                        detail.name = "Rage";
+                        detail.url = "audio/Generes/Rage.mp3";
+                        break;
+                    case 'rock': 
+                        detail.name = "Rock";
+                        detail.url = "audio/Generes/Rock.mp3";
+                        break;
+                    case 'cattle': 
+                        detail.name = "Cattle";
+                        detail.url = "audio/Snippets/Cattle.mp3";
+                        break;
+                    case 'listening': 
+                        detail.name = "You're Listening To...";
+                        detail.url = "audio/Snippets/You're Listening To....mp3";
+                        break;
+                    case 'brought': 
+                        detail.name = "Is brought to you by... (Destin)";
+                        detail.url = "audio/Snippets/Is brought to you by... (Destin).mp3";
+                        break;
+                    case 'brought2': 
+                        detail.name = "Is brought to you by... (Matt)";
+                        detail.url = "audio/Snippets/Is brought to you by... (Matt).mp3";
+                        break;
+                    case 'brought3': 
+                        detail.name = "Is brought to you by... Version 2 by Destin";
+                        detail.url = "audio/Snippets/Is brought to you by... Version 2 by Destin.mp3";
+                        break;
+                    case 'market': 
+                        detail.name = "Market";
+                        detail.url = "audio/Snippets/Market.mp3";
+                        break;
+                    case 'onto': 
+                        detail.name = "Now on to the";
+                        detail.url = "audio/Snippets/Now on to the.mp3";
+                        break;
+                    case 'this': 
+                        detail.name = "This";
+                        detail.url = "audio/Snippets/This.mp3";
+                        break;
+                    case 'traffic': 
+                        detail.name = "Traffic";
+                        detail.url = "audio/Snippets/Traffic.mp3";
+                        break;
+                    case 'update': 
+                        detail.name = "Update";
+                        detail.url = "audio/Snippets/Update.mp3";
+                        break;
+                    case 'brought4': 
+                        detail.name = "Was brought to you by... (Matt)";
+                        detail.url = "audio/Snippets/Was brought to you by... (Matt).mp3";
+                        break;
+                    case 'sponsored': 
+                        detail.name = "Was sponsored by...";
+                        detail.url = "audio/Snippets/Was sponsored by....mp3";
                         break;
                 }
                 return detail;
