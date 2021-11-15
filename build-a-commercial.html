@@ -65,8 +65,11 @@
             .slip-swiping-container {
                 overflow-x: hidden;
             }
-            .drag_icon {
+            .float_right {
                 float: right;
+            }
+            .visible_only_when_playlist_has_items {
+                display: none;
             }
         </style>
     </head>
@@ -88,10 +91,10 @@
         <section>
             <div class="two-columns">
                 <div class="single_column">
-                    <h2>Playlist</h2>
+                    <h2>Playlist<span class="float_right visible_only_when_playlist_has_items"><a href="">Share</a></span></h2>
                     <ul id="playlist">
                     </ul>
-                    <a href="javascript:reset_playlist()" style="display: none;" id="playlist_reset">Reset Playlist</a>
+                    <a href="javascript:reset_playlist()" class="visible_only_when_playlist_has_items" id="playlist_reset">Reset Playlist</a>
                 </div>
                 <div class="single_column">
                     <h2>Source Material</h2>
@@ -145,10 +148,10 @@
             <p>
                 <br />
             </p>
-            <audio controls autoplay id="player" style="display: none;"></audio>
+            <audio controls autoplay id="player" class="visible_only_when_playlist_has_items"></audio>
             <p>
                 <br />
-                <a href="javascript:download_commercial()" style="display: none;" id="playlist_download">Download Commercial</a>
+                <a href="javascript:download_commercial()" class="visible_only_when_playlist_has_items" id="playlist_download">Download Commercial</a>
             </p>
         </section>
         <section><br /><br /><br /></section>
@@ -167,7 +170,7 @@
             function add_to_playlist(item) {
                 var item_details = get_details(item);
                 var playlist_item = document.createElement('li');
-                playlist_item.innerHTML = "<span class='"+item+"'>"+item_details.name+"</span><span class='drag_icon instant'>≡</span>";
+                playlist_item.innerHTML = "<span class='"+item+"'>"+item_details.name+"</span><span class='float_right instant'>≡</span>";
                 playlist.appendChild(playlist_item);
                 set_playlist();
             }
@@ -298,9 +301,14 @@
                     playlist.children[0].classList.add("currently_playing");
                     player.pause();
                 }
-                document.getElementById("playlist_reset").style = "display: inline;";
-                document.getElementById("playlist_download").style = "display: inline;";
-                document.getElementById("player").style = "display: inline;";
+                for(i= 0; i < document.styleSheets[0].cssRules.length; i++) {
+                    if (document.styleSheets[0].cssRules[i].selectorText === ".visible_only_when_playlist_has_items") {
+                        document.styleSheets[0].cssRules[i].style['display'] = 'inline';
+                    }
+                }
+                if (playing.length === 0) {
+                    reset_playlist();
+                }
             }
 
             function get_next_track() {
@@ -328,9 +336,12 @@
                     playlist.children[i].remove();
                 }
                 player.src = "";
-                document.getElementById("playlist_reset").style = "display: none;";
-                document.getElementById("playlist_download").style = "display: none;";
-                document.getElementById("player").style = "display: none;";
+
+                for(i= 0; i < document.styleSheets[0].cssRules.length; i++) {
+                    if (document.styleSheets[0].cssRules[i].selectorText === ".visible_only_when_playlist_has_items") {
+                        document.styleSheets[0].cssRules[i].style['display'] = 'none';
+                    }
+                }
             }
 
             function download_commercial() {
